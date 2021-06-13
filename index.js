@@ -2,7 +2,6 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 class InTempo {
     constructor(startTime, endTime) {
-        this.separator = ':';
         if (!startTime || !endTime)
             throw new Error('invalid time for intempo');
         this.startTimeInSeconds = Date.parse('01 Jan 1970 ' + startTime);
@@ -31,8 +30,26 @@ class InTempo {
             return 'outside';
         }
     }
-    nextStart() { }
-    nextStop() { }
+    nextStartInMs() {
+        const elapsed = InTempo.msecondElapsed();
+        if (elapsed < this.startTimeInSeconds) {
+            return this.startTimeInSeconds - InTempo.msecondElapsed();
+        }
+        else {
+            const toEndOfDay = Date.parse('01 Jan 1970 24:00:00');
+            return toEndOfDay - InTempo.msecondElapsed() + this.startTimeInSeconds;
+        }
+    }
+    nextStopInMs() {
+        const elapsed = InTempo.msecondElapsed();
+        if (elapsed < this.endTimeInSeconds) {
+            return this.endTimeInSeconds - InTempo.msecondElapsed();
+        }
+        else {
+            const toEndOfDay = Date.parse('01 Jan 1970 24:00:00');
+            return toEndOfDay - InTempo.msecondElapsed() + this.endTimeInSeconds;
+        }
+    }
 }
 exports.default = InTempo;
 //# sourceMappingURL=index.js.map

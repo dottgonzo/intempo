@@ -1,9 +1,6 @@
-
-
 export default class InTempo {
   startTimeInSeconds: number
   endTimeInSeconds: number
-  separator: string = ':'
   constructor(startTime: string, endTime: string) {
     if (!startTime || !endTime) throw new Error('invalid time for intempo')
 
@@ -33,6 +30,24 @@ export default class InTempo {
       return 'outside'
     }
   }
-  nextStart() {}
-  nextStop() {}
+  nextStartInMs() {
+    const elapsed = InTempo.msecondElapsed()
+
+    if (elapsed < this.startTimeInSeconds) {
+      return this.startTimeInSeconds - InTempo.msecondElapsed()
+    } else {
+      const toEndOfDay = Date.parse('01 Jan 1970 24:00:00')
+      return toEndOfDay - InTempo.msecondElapsed() + this.startTimeInSeconds
+    }
+  }
+  nextStopInMs() {
+    const elapsed = InTempo.msecondElapsed()
+
+    if (elapsed < this.endTimeInSeconds) {
+      return this.endTimeInSeconds - InTempo.msecondElapsed()
+    } else {
+      const toEndOfDay = Date.parse('01 Jan 1970 24:00:00')
+      return toEndOfDay - InTempo.msecondElapsed() + this.endTimeInSeconds
+    }
+  }
 }
