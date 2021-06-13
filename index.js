@@ -7,6 +7,10 @@ class InTempo {
         this.startTimeInSeconds = Date.parse('01 Jan 1970 ' + startTime);
         this.endTimeInSeconds = Date.parse('01 Jan 1970 ' + endTime);
     }
+    static weAreInside(startTime, endTime) {
+        const inT = new InTempo(startTime, endTime);
+        return inT.weAreInside();
+    }
     static msecondElapsed() {
         const currentDate = new Date();
         const hours = currentDate.getUTCHours();
