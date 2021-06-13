@@ -1,0 +1,33 @@
+{
+  "name": "intempo",
+  "version": "0.0.1",
+  "description": "Time Util",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha",
+    "watch-ts": "tsc -w",
+    "build": "tsc",
+    "release:patch": "npm version patch && git push && git push --tags",
+    "release:minor": "npm version minor && git push && git push --tags",
+    "release:major": "npm version major && git push && git push --tags"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dottgonzo/intempo.git"
+  },
+  "keywords": [
+    "time"
+  ],
+  "author": "Dario Caruso",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/dottgonzo/intempo/issues"
+  },
+  "homepage": "https://github.com/dottgonzo/intempo#readme",
+  "devDependencies": {
+    "chai": "^4.3.4",
+    "mocha": "^9.0.0",
+    "prettier": "^2.3.1",
+    "typescript": "^4.3.2"
+  }
+}
