@@ -1,6 +1,6 @@
 {
   "name": "intempo",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Time Util",
   "main": "index.js",
   "scripts": {
